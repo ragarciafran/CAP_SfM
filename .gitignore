@@ -1,0 +1,5 @@
+# ignore all images
+*.jpg
+
+# ignore all checkpoints
+.ipynb_checkpoints/*
