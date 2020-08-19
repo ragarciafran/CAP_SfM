@@ -3,3 +3,6 @@
 
 # ignore all checkpoints
 .ipynb_checkpoints/*
+
+# ignore the ladi csv
+ladi_images_metadata.csv
