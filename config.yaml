@@ -12,3 +12,6 @@ use_altitude_tag: yes                 # Use or ignore EXIF altitude tag
 align_method: orientation_prior       # orientation_prior or naive
 align_orientation_prior: plane_based  # horizontal, vertical or no_roll UPDATED: added plane_based
 bundle_use_gps: yes                   # Enforce GPS position in bundle adjustment
+
+# Parameters for model partitioning
+submodel_size: 6                      # Average number of images per submodel
