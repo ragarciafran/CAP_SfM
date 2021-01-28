@@ -5,13 +5,33 @@ depthmap_min_consistent_views: 2      # Min number of views that should reconstr
 depthmap_save_debug_files: yes        # Save debug files with partial reconstruction results
 feature_process_size: 1024
 
-matching_gps_distance: 300            # Maximum gps distance between two images for matching
+matching_gps_distance: 400            # Maximum gps distance between two images for matching
 matching_gps_neighbors: 0             # Number of images to match selected by GPS distance. Set to 0 to use no limit (or disable if matching_gps_distance is also 0)
-matching_time_neighbors: 2            # Number of images to match selected by time taken. Set to 0 to disable
+matching_time_neighbors: 0            # Number of images to match selected by time taken. Set to 0 to disable
 use_altitude_tag: yes                 # Use or ignore EXIF altitude tag
 align_method: orientation_prior       # orientation_prior or naive
 align_orientation_prior: plane_based  # horizontal, vertical or no_roll UPDATED: added plane_based
 bundle_use_gps: yes                   # Enforce GPS position in bundle adjustment
 
-# Parameters for model partitioning
-submodel_size: 6                      # Average number of images per submodel
+# Other params
+processes: 2                  # Number of threads to use
+
+# Params for submodel split and merge
+submodel_size: 20                                                    # Average number of images per submodel
+submodel_overlap: 0.0                                               # Radius of the overlapping region between submodels
+submodels_relpath: "submodels"                                       # Relative path to the submodels directory
+submodel_relpath_template: "submodels/submodel_%04d"                 # Template to generate the relative path to a submodel directory
+submodel_images_relpath_template: "submodels/submodel_%04d/images"   # Template to generate the relative path to a submodel images directory
+
+# Params for features
+feature_type: ORB           # Feature type (AKAZE, SURF, SIFT, HAHOG, ORB)
+feature_root: 1               # If 1, apply square root mapping to features
+feature_min_frames: 4000      # If fewer frames are detected, sift_peak_threshold/surf_hessian_threshold is reduced.
+feature_process_size: 2048    # Resize the image if its size is larger than specified. Set to -1 for original size
+feature_use_adaptive_suppression: no
+
+
+# Params for general matching
+lowes_ratio: 0.8              # Ratio test for matches
+matcher_type: BRUTEFORCE           # FLANN, BRUTEFORCE, or WORDS
+symmetric_matching: yes       # Match symmetricly or one-way
